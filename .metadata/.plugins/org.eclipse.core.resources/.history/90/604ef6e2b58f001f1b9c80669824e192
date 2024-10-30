@@ -1,0 +1,15 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Random rand = new Random();
+		int a,b;
+		a= scanner.nextInt();
+		b = scanner.nextInt();
+		// a와 b 사이 수 랜덤로 출력하기
+		int n = (int)(Math.random()*(b-a+1)) + a;
+		scanner.close();
+	}
+}
