@@ -1,0 +1,20 @@
+# macOS 관련 시스템 파일
+.DS_Store
+
+# IntelliJ IDEA 설정 파일
+.idea/
+*.iml
+out/
+
+# Eclipse 설정 파일
+.metadata/
+*.classpath
+*.project
+*.settings/
+
+# Gradle/Maven 빌드 파일 (필요 시)
+target/
+build/
+
+# 기타 IDE 관련 파일들
+*.log
