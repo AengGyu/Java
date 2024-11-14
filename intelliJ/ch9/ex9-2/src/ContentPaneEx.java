@@ -14,7 +14,7 @@ public class ContentPaneEx extends JFrame {
         contentPane.add(new JButton("Cancel")); // Cancel 버튼 달기
         contentPane.add(new JButton("Ignore")); // Ignore 버튼 달기
 
-        setSize(500, 250); // 프레임 크기 300x150 설정
+        setSize(300, 150); // 프레임 크기 300x150 설정
         setVisible(true); // 화면에 프레임 출력
     }
 
