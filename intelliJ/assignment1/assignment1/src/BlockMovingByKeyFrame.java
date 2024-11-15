@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockMovingByKeyFrame extends JFrame {
     public BlockMovingByKeyFrame() {
-        super("상하좌우 키로 블록 이동시키기_20011559_최영규"); // 제목과 제출자 이름 쓰기
+        super("상하좌우 키로 블록 이동시키기_최영규"); // 제목과 제출자 이름 쓰기
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
