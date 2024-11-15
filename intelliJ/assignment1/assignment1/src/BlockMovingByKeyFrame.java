@@ -10,18 +10,44 @@ public class BlockMovingByKeyFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container c = getContentPane();
+
         JPanel northPanel = new JPanel(); // 설명과 점수를 표시할 패널 생성
         northPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 패널의 레이아웃을 왼쪽 정렬로 설정
         northPanel.add(new JLabel("상하좌우 키로 블록을 이동시킬 수 있습니다.")); // 패널에 라벨 붙히기
         JLabel scoreLabel = new JLabel("점수 : 0"); // 점수를 나타낼 라벨을 생성
         northPanel.add(scoreLabel); // 패널에 붙히기
-        c.add(northPanel,BorderLayout.NORTH); // 패널을 NORTH에 붙히기
+        c.add(northPanel, BorderLayout.NORTH); // 패널을 NORTH에 붙히기
+
         MyPanel gridPanel = new MyPanel(scoreLabel);
         c.add(gridPanel, BorderLayout.CENTER);
 
+        JPanel southPanel = new JPanel();
+        JButton startBtn = new JButton("start");
+        JButton stopBtn = new JButton("stop");
+        JButton resetBtn = new JButton("reset");
+        southPanel.add(startBtn);
+        southPanel.add(stopBtn);
+        southPanel.add(resetBtn);
+
+        startBtn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                gridPanel.setFocusable(true);
+                gridPanel.requestFocus();
+            }
+        });
+        stopBtn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                gridPanel.setFocusable(false);
+            }
+        });
+        resetBtn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                gridPanel.reset(scoreLabel);
+                gridPanel.setFocusable(false);
+            }
+        });
+        c.add(southPanel,BorderLayout.SOUTH);
         setVisible(true);
-        gridPanel.setFocusable(true);
-        gridPanel.requestFocus();
     }
 
     static class MyPanel extends JPanel {
@@ -34,6 +60,7 @@ public class BlockMovingByKeyFrame extends JFrame {
         private final static Color BASECOLOR = Color.WHITE; // 선택 안 된 블록들의 배경색
         private final static Color STARCOLOR = Color.YELLOW; // 목표 위치 배경색
         private int score = 0;
+
         public MyPanel(JLabel scoreLabel) {
             setLayout(new GridLayout(ROWS, COLS, 1, 1)); // 상하 좌우 셀의 간격 1픽셀
             setBackground(LINECOLOR); // 배경색을 입히고, 블록을 출력되면 배경색이 1픽셀만 보이게 되어, 그리드 선처럼 보이게 됨
@@ -81,7 +108,7 @@ public class BlockMovingByKeyFrame extends JFrame {
                             return;
                     }
                     labels[curRow][curCol].setBackground(BLOCKCOLOR);
-                    if(curRow == starRow && curCol == starCol){ // 파란색 블록과 별이 만나면 별의 위치 재설정
+                    if (curRow == starRow && curCol == starCol) { // 파란색 블록과 별이 만나면 별의 위치 재설정
                         setStarPoint();
                         score++;
                         scoreLabel.setText("점수 : " + score);
@@ -90,14 +117,25 @@ public class BlockMovingByKeyFrame extends JFrame {
                 }
             });
         }
-        private void setStarPoint(){
+
+        private void setStarPoint() {
             Random rand = new Random();
             do {
                 starCol = rand.nextInt(COLS);
                 starRow = rand.nextInt(ROWS); // 랜덤으로 별의 좌표를 정함
-            }while(starRow == curRow && starCol == curCol);
+            } while (starRow == curRow && starCol == curCol);
 
             labels[starRow][starCol].setBackground(STARCOLOR);
+        }
+        public void reset(JLabel scoreLabel){
+            score = 0;
+            scoreLabel.setText("점수 : 0");
+            labels[curRow][curCol].setBackground(BASECOLOR);
+            labels[starRow][starCol].setBackground(BASECOLOR);
+            curRow = 0;
+            curCol = 0;
+            labels[curRow][curCol].setBackground((BLOCKCOLOR));
+            setStarPoint();
         }
         private int getArrayIndex(int x, int y) {
             return COLS * y + x;
