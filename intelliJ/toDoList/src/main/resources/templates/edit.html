@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit To-Do</title>
+</head>
+<body>
+<h1>To-Do 수정</h1>
+<form th:action="@{/edit}" method="post">
+    <input type="hidden" th:name="index" th:value="${index}" />
+    <input type="text" th:name="task" th:value="${todo}" placeholder="수정할 내용을 입력하세요" required />
+    <button type="submit">저장</button>
+</form>
+<a th:href="@{/}">취소</a>
+</body>
+</html>
