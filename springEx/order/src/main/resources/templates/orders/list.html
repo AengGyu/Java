@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>주문 목록</title>
+</head>
+<body>
+<h2>주문 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>주문 ID</th>
+        <th>회원</th>
+        <th>상품</th>
+        <th>수량</th>
+        <th>총 가격</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.member.name}"></td>
+        <td th:text="${order.product.name}"></td>
+        <td th:text="${order.quantity}"></td>
+        <td th:text="${order.totalPrice}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br><br>
+<a href="/member-home">
+    <button>회원 홈으로 이동</button>
+</a>
+</body>
+</html>

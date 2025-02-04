@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 목록</title>
+</head>
+<body>
+<h2>회원 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>등급</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.id}">ID</td>
+        <td th:text="${member.name}">이름</td>
+        <td th:text="${member.grade}">등급</td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/admin-home">
+    <button>관리자 홈으로 이동</button>
+</a>
+</body>
+</html>

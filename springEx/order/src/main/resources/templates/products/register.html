@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>상품 등록</title>
+</head>
+<body>
+<h2>상품 등록</h2>
+<form action="/admin/products/new" method="post">
+    <label for="name">상품 이름:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="price">가격:</label>
+    <input type="number" id="price" name="price" required />
+
+    <button type="submit">등록하기</button>
+</form>
+<br>
+<a href="/admin-home">
+    <button>관리자 홈으로 이동</button>
+</a>
+</body>
+</html>

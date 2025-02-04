@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>회원 가입</title>
+</head>
+<body>
+<h2>회원 가입</h2>
+<form action="/members/new" method="post">
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="grade">회원 등급:</label>
+    <select id="grade" name="grade">
+        <option value="BRONZE">Bronze</option>
+        <option value="SILVER">Silver</option>
+        <option value="GOLD">Gold</option>
+    </select>
+
+    <button type="submit">가입하기</button>
+</form>
+<br>
+<a href="/member-home">
+    <button>회원 홈으로 이동</button>
+</a>
+</body>
+</html>

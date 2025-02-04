@@ -22,28 +22,21 @@ public class Main {
             targetX = Integer.parseInt(st.nextToken());
             targetY = Integer.parseInt(st.nextToken());
 
-            int count = 0;
+            int result = -1;
 
-            count = find(1, 1, count + 1);
-            System.out.println(count);
+            for (int i = targetX; i <= M * N; i += M) {
+                /**
+                 * i번째 달력에서 targetX가 등장하므로
+                 * i번째 달력에서 targetY를 만족하는지 확인
+                 * i % N 을 하게 되면 N번째에 N이 돼야 하는데 0이 됨.
+                 */
+                if ((i - 1) % N + 1 == targetY) {
+                    result = i;
+                    break;
+                }
+            }
+
+            System.out.println(result);
         }
-    }
-
-    private static int find(int startX, int startY, int count) {
-        if (startX == targetX && startY == targetY)
-            return count;
-
-        if (startX == M && startY == N) return -1;
-
-        if (startX < M) startX = startX + 1;
-        else startX = 1;
-
-        if (startY < N) startY = startY + 1;
-        else startY = 1;
-
-
-        count = find(startX, startY, count + 1);
-
-        return count;
     }
 }
