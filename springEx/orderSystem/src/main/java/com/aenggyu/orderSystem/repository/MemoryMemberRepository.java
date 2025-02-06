@@ -1,6 +1,6 @@
 package com.aenggyu.orderSystem.repository;
 
-import com.aenggyu.orderSystem.domain.Member;
+import com.aenggyu.orderSystem.domain.member.Member;
 
 import java.util.*;
 

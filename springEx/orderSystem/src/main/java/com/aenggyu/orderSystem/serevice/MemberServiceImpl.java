@@ -1,6 +1,6 @@
 package com.aenggyu.orderSystem.serevice;
 
-import com.aenggyu.orderSystem.domain.Member;
+import com.aenggyu.orderSystem.domain.member.Member;
 import com.aenggyu.orderSystem.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
