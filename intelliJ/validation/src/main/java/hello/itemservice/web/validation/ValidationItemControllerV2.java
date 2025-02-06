@@ -30,6 +30,7 @@ public class ValidationItemControllerV2 {
 
     @InitBinder
     public void init(WebDataBinder dataBinder){
+        log.info("init binder {}", dataBinder);
         dataBinder.addValidators(itemValidator);
     }
 
@@ -53,7 +54,7 @@ public class ValidationItemControllerV2 {
         return "validation/v2/addForm";
     }
 
-    //    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV1(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         //검증 로직
@@ -89,7 +90,7 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
-    //    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         //검증 로직
@@ -125,7 +126,7 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
-    //    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV3(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         //검증 로직
