@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>홈</title>
+</head>
+<body>
+
+<h2>환영합니다, <span th:text="${member.name}"></span>님!</h2>
+
+<!-- 일반 회원 메뉴 -->
+<div th:if="${member.grade.name() != 'ADMIN'}">
+    <ul>
+        <li><a href="/products">상품 목록</a></li>
+        <li><a href="/orders">주문</a></li>
+        <li><a href="/orders/my">내 주문 목록 보기</a></li>
+        <li><a href="/members/my">내 정보 보기</a></li>
+    </ul>
+</div>
+
+<!-- 관리자 메뉴 -->
+<div th:if="${member.grade.name() == 'ADMIN'}">
+    <ul>
+        <li><a href="/admin/members">회원 목록 조회</a></li>
+        <li><a href="/admin/orders">주문 목록 조회</a></li>
+        <li><a href="/admin/products">상품 등록</a></li>
+    </ul>
+</div>
+
+<form action="/logout" th:action="@{/logout}" method="post">
+    <button type="submit">로그아웃</button>
+</form>
+
+</body>
+</html>

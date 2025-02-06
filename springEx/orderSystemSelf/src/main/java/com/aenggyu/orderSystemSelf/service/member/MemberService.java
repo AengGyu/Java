@@ -1,6 +1,6 @@
-package com.aenggyu.orderSystem.serevice;
+package com.aenggyu.orderSystemSelf.service.member;
 
-import com.aenggyu.orderSystem.domain.member.Member;
+import com.aenggyu.orderSystemSelf.domain.member.Member;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 가입</title>
+    <title>로그인</title>
 </head>
 <body>
 
-<h2>회원 가입</h2>
+<h2>로그인</h2>
 
-<form action="/members/register" th:action th:object="${member}" method="post">
-
+<form action="/login" th:action th:object="${loginForm}" method="post">
     <div th:if="${#fields.hasGlobalErrors()}">
         <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">
-            글로벌 오류 메세지
+            글로벌 오류 메시지
         </p>
     </div>
 
@@ -23,21 +21,18 @@
             아이디 입력 오류
         </div>
     </label><br>
+
     <label>비밀번호:
         <input type="password" th:field="*{password}" placeholder="비밀번호">
         <div th:errors="*{password}">
             비밀번호 입력 오류
         </div>
     </label><br>
-    <label>이름:
-        <input type="text" th:field="*{name}" placeholder="이름">
-        <div th:errors="*{password}">
-            이름 입력 오류
-        </div>
-    </label><br>
 
-    <button type="submit">가입하기</button>
+    <button type="submit">로그인</button>
 </form>
+
+<a href="/">홈으로 이동</a>
 
 </body>
 </html>

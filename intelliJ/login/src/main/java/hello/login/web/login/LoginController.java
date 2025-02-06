@@ -121,7 +121,7 @@ public class LoginController {
 //        sessionManager.createSession(loginMember, response);
 
 
-        return "redirect:" + redirectURL;
+        return "redirect:" + redirectURL    ;
     }
 
 //    @PostMapping("/logout")

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 정보</title>
+</head>
+<body>
+<h2 th:if="${param.status}" th:text="'회원가입 성공!'"> </h2>
+<h2>회원 정보</h2>
+<div th:object="${member}">
+    <p>아이디: <span th:text="*{loginId}"></span></p>
+    <p>이름: <span th:text="*{name}"></span></p>
+    <p>회원 등급: <span th:text="*{grade}"></span></p>
+</div>
+<a href="/">홈으로 이동</a>
+</body>
+</html>

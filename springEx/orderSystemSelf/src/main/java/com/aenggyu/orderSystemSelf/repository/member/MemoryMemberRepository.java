@@ -1,9 +1,11 @@
-package com.aenggyu.orderSystem.repository;
+package com.aenggyu.orderSystemSelf.repository.member;
 
-import com.aenggyu.orderSystem.domain.member.Member;
+import com.aenggyu.orderSystemSelf.domain.member.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static final Map<Long, Member> store = new HashMap<>();
@@ -13,7 +15,6 @@ public class MemoryMemberRepository implements MemberRepository{
     public Member save(Member member) {
         member.setId(++sequence);
         store.put(member.getId(), member);
-
         return member;
     }
 
@@ -25,7 +26,7 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public Optional<Member> findByLoginId(String loginId) {
         return store.values().stream()
-                .filter(member -> member.getLoginId().equals(loginId))
+                .filter(m -> m.getLoginId().equals(loginId))
                 .findAny();
     }
 

@@ -1,8 +1,9 @@
-package com.aenggyu.orderSystem.controller;
+package com.aenggyu.orderSystemSelf.controller;
 
-import com.aenggyu.orderSystem.domain.member.Member;
-import com.aenggyu.orderSystem.domain.member.MemberRegisterForm;
-import com.aenggyu.orderSystem.service.member.MemberService;
+import com.aenggyu.orderSystemSelf.domain.Grade;
+import com.aenggyu.orderSystemSelf.domain.member.Member;
+import com.aenggyu.orderSystemSelf.domain.member.MemberRegisterForm;
+import com.aenggyu.orderSystemSelf.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,9 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    //회원 가입 폼
     @GetMapping("/register")
     public String registerForm(@ModelAttribute("member") MemberRegisterForm form) {
-        return "members/addMemberForm";
+        return "members/register";
     }
 
     @PostMapping("/register")
@@ -30,36 +30,33 @@ public class MemberController {
                            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            return "members/addMemberForm";
+            return "members/register";
         }
-
-//        if(memberService.findMemberByLoginId(form.getLoginId()).isPresent()){
-//            bindingResult.reject("loginId", "이미 사용 중인 아이디입니다.");
-//
-//            return "members/addMemberForm";
-//        }
 
         if (memberService.findMemberByLoginId(form.getLoginId()).isPresent()) {
-            bindingResult.rejectValue("loginId", "duplicateMember", "이미 사용 중인 아이디입니다.");
-            return "members/addMemberForm";
+            bindingResult.rejectValue("loginId", "duplicateLoginId", "이미 존재하는 아이디입니다.");
+            return "members/register";
         }
 
-        Member newMember = new Member(form.getLoginId(), form.getPassword(), form.getName());
+        Member member = new Member(form.getLoginId(), form.getPassword(), form.getName());
+        member.setGrade(Grade.BRONZE);
 
-        Member savedMember = memberService.register(newMember);
-        redirectAttributes.addAttribute("memberId", savedMember.getId());
-        redirectAttributes.addAttribute("status", true);
+        Member registeredMember = memberService.register(member);
+        redirectAttributes.addAttribute("id", registeredMember.getId());
+        redirectAttributes.addAttribute("isNew", true);
 
-
-        return "redirect:/members/{memberId}";
+        return "redirect:/members/{id}";
     }
 
     @GetMapping("/{id}")
-    public String member(@PathVariable long id, Model model) {
+    public String member(@PathVariable Long id, Model model) {
         Member member = memberService.findMemberById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         model.addAttribute("member", member);
-        return "members/member";
+
+        return "/members/member";
     }
+
+    // 회원 가입 구현 했으니까 로그인 구현하고 HomeController 구현하기
 }

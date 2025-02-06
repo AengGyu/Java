@@ -1,4 +1,4 @@
-package com.aenggyu.orderSystem.repository;
+package com.aenggyu.orderSystem.repository.member;
 
 import com.aenggyu.orderSystem.domain.member.Member;
 
